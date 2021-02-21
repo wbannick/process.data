@@ -18,4 +18,5 @@ Imports:
   stringr,
   readr,
   dplyr,
-  magrittr
+  magrittr,
+  tibble
