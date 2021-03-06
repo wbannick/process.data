@@ -5,7 +5,6 @@
 #'
 #' @param color_pal a vector of character corresponding to colors to plot
 #'
-#'
 #' @importFrom graphics barplot
 #' @importFrom stats runif
 #' @examples
@@ -13,10 +12,8 @@
 #' visualize_colors(c("dodgerblue", "darkgrey"))
 #'
 #' \dontrun{
-#'
 #' # for those who use viridis
 #' visualize_colors(viridis::viridis(5))
-#'
 #' }
 #'
 #' @return a barplot (graphics version, not ggplot)
