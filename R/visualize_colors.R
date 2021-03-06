@@ -25,5 +25,5 @@
 
 visualize_colors <- function(color_pal){
   num_colors <- length(color_pal)
-  return(graphics::barplot(runif(num_colors, min = 3, max =10), col = color_pal))
+  return(graphics::barplot(runif(num_colors, min = 3, max = 10), col = color_pal))
 }
