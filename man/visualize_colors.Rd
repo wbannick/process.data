@@ -20,10 +20,8 @@ This function plots supplied colors in a barplot so the user can get a quick sen
 visualize_colors(c("dodgerblue", "darkgrey"))
 
 \dontrun{
-
 # for those who use viridis
 visualize_colors(viridis::viridis(5))
-
 }
 
 }
