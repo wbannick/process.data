@@ -7,7 +7,9 @@
 read_data_directory(
   directory_path,
   map_fxn = purrr::map_dfr,
-  read_fxn = readr::read_csv
+  read_fxn = readr::read_csv,
+  filename_as_var = FALSE,
+  exclude_files_regex = NULL
 )
 }
 \arguments{
@@ -15,7 +17,12 @@ read_data_directory(
 
 \item{map_fxn}{the map_fxn to use; defaults to map_dfr which is ideal for creating a dataframe}
 
-\item{read_fxn}{the function used to read in individual files; defaults to read.csv}
+\item{read_fxn}{the function used to read in individual files; defaults to readr::read_csv}
+
+\item{filename_as_var}{a logical for whether or not the filename should be stored as a variable; defaults to FALSE
+this can be helpful if individual data files do not have variables that can be used to distinguish the files from each other}
+
+\item{exclude_files_regex}{a regex that can be used indicate which files in a directory to exclude; defaults to NULL in which case all files are read}
 }
 \value{
 data return depends on map_fxn
@@ -25,11 +32,11 @@ Read a data directory to a data frame or a list
 }
 \examples{
 \dontrun{
-directory_path <- "Data/PPIC"
+directory_path <- "Data"
 #to read the data into a data frame
-df <- read_data_directory(directory_path, purrr::map_dfr, haven::read_sav)
+df <- read_data_directory(directory_path, purrr::map_dfr, haven::read_csv)
 #to read the data into list
-data_list <- read_data_directory(directory_path, purrr::map, haven::read_sav)
+data_list <- read_data_directory(directory_path, purrr::map, haven::read_csv)
 
 #with defaults you can also just read data from csvs to a dataframe
 df <- read_data_directory(directory_path)
