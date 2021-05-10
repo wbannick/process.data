@@ -9,7 +9,8 @@ read_data_directory(
   map_fxn = purrr::map_dfr,
   read_fxn = readr::read_csv,
   filename_as_var = FALSE,
-  exclude_files_regex = NULL
+  exclude_files_regex = NULL,
+  include_files_regex = NULL
 )
 }
 \arguments{
@@ -23,6 +24,8 @@ read_data_directory(
 this can be helpful if individual data files do not have variables that can be used to distinguish the files from each other}
 
 \item{exclude_files_regex}{a regex that can be used indicate which files in a directory to exclude; defaults to NULL in which case all files are read}
+
+\item{include_files_regex}{a regex that can be used indicate which files in a directory to include; defaults to NULL in which case all files are read}
 }
 \value{
 data return depends on map_fxn

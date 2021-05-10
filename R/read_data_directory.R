@@ -8,6 +8,7 @@
 #' @param filename_as_var a logical for whether or not the filename should be stored as a variable; defaults to FALSE
 #' this can be helpful if individual data files do not have variables that can be used to distinguish the files from each other
 #' @param exclude_files_regex a regex that can be used indicate which files in a directory to exclude; defaults to NULL in which case all files are read
+#' @param include_files_regex a regex that can be used indicate which files in a directory to include; defaults to NULL in which case all files are read
 #'
 #' @importFrom stringr str_detect str_remove
 #' @importFrom purrr map_dfr
@@ -31,7 +32,8 @@
 #' @export
 
 read_data_directory <- function(directory_path, map_fxn = purrr::map_dfr, read_fxn = readr::read_csv,
-                                filename_as_var = FALSE, exclude_files_regex = NULL){
+                                filename_as_var = FALSE, exclude_files_regex = NULL,
+                                include_files_regex = NULL){
   # if no trailing / let's add it
   if(!stringr::str_detect(directory_path, "/$")){
     directory_path <- paste0(directory_path, "/")
@@ -41,6 +43,10 @@ read_data_directory <- function(directory_path, map_fxn = purrr::map_dfr, read_f
   # if they supplied some files to exclude, exclude em
   if(!(is.null(exclude_files_regex))){
     data_files <- data_files[!stringr::str_detect(data_files, exclude_files_regex)]
+  }
+  # if it's an include situation this will be better
+  if(!(is.null(include_files_regex))){
+    data_files <- data_files[stringr::str_detect(data_files, include_files_regex)]
   }
   if(length(data_files) == 0){
     stop("There are no data files to read. Check your directory and exclude_files_regex.")
